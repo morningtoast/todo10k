@@ -57,7 +57,7 @@
 	$db    = json_decode($saved, true);
 
 	if ($_POST["newtask"]) {
-		$t = trim($_POST["newtask"]);
+		$t = trim(stripslashes($_POST["newtask"]));
 		$f = substr($t,0,1);
 
 		if ($f == "@") {

@@ -11,4 +11,4 @@ RewriteCond %{REQUEST_FILENAME} !-l
  
 RewriteCond $1 !^(index\.php|images|robots\.txt)
  
-RewriteRule ^(.*)$ /index.php?key=$1 [QSA]
+RewriteRule ^(.*)$ index.php?key=$1 [QSA]
