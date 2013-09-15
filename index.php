@@ -120,7 +120,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>2DO</title>
+	<title>2DO / <?= $key; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<link href="apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed" />
 	<link href="apple-touch-icon-72x72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72" />
@@ -170,7 +170,7 @@
 <body>
 	<div id="layout">
 		<form id="newtask" method="post" action="./<?= $key; ?>">
-			<input type="text" id="taskname" name="newtask" />
+			<input type="text" id="taskname" name="newtask" autocapitalize="off" autocorrect="off" />
 			<input type="hidden" name="key" value="<?= $key; ?>" />
 			<ul id="tags">
 				<? foreach ($db["tags"] as $a_item) { ?>
@@ -181,9 +181,16 @@
 			</ul>
 		</form>
 		<ul id="todolist">
-			<? foreach ($db["list"] as $a_item) { $i++; $tag = getTag($a_item["name"]); ?>
+			<? foreach ($db["list"] as $a_item) { 
+				$i++;
+				$tag = getTag($a_item["name"]); 
+				$overdue = "";
+				$d = round(round((time() - $a_item["id"]) / 60) / 60 / 24);
+				$d = round($d / 7);
+				for ($a=0; $a < $d; $a++) { $overdue .= "+"; }
+			?>
 			<li class="<?= $tag; ?>">
-				<a href="#" data-id="<?= $a_item["id"]; ?>" onclick="return taskdone(this);"><?= notag($a_item["name"]); ?></a>
+				<a href="#" data-id="<?= $a_item["id"]; ?>" onclick="return taskdone(this);"><?= $overdue; ?> <?= notag($a_item["name"]); ?></a>
 				<? if ($tag) { ?><a href="#" class="filter" onclick="return filter(this);">@<?= $tag; ?></a> <? } ?>
 			</li>
 			<?
