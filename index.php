@@ -151,13 +151,16 @@
 		#tags li { float: left; padding-right: 8px; font-size: 1.4rem; }
 		#tags a { color: #fff; padding:8px; }
 
-		@media all and (min-width: 501px) { 
+		@media all and (min-width: 501px) {
+			form { padding: 10px 5%; }
+			#todolist { padding: 10px 5%; }
 			#todolist li a { display: block; }
 			#todolist a.filter { position: absolute; right:20px; top:8px; color:#999; background-color:#efefef; border-radius:3px; padding:2px 4px; }
 		}		
 		
 		@media all and (min-width: 801px) { 
 			#layout{margin-left:5%} 
+			#todolist { padding:0; }
 		}
 	</style>
 	<script>
